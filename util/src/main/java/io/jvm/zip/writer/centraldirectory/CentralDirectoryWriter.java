@@ -1,11 +1,12 @@
 package io.jvm.zip.writer.centraldirectory;
 
-import java.util.Arrays;
-
 import io.jvm.zip.reader.centraldirectory.CentralDirectoryReader;
 import io.jvm.zip.structure.centraldirectory.CentralDirectoryEnd;
 import io.jvm.zip.structure.centraldirectory.CentralDirectoryRecord;
+import io.jvm.zip.structure.localfile.CompressedData;
 import io.jvm.zip.writer.localfile.LocalFileRecordWriter;
+
+import java.util.Arrays;
 
 public class CentralDirectoryWriter {
 
@@ -27,9 +28,13 @@ public class CentralDirectoryWriter {
       System.out.println("NEW LocalFileRecord Offset :" + offsetSum);
 
       records[index].setLocalFileHeaderOffset(offsetSum);
-      records[index].setCompressedSize(r.localRecord.getCompressedDataObject().getLength());
-      records[index].setCompressionMethod(r.localRecord.getCompressedDataObject().Method);
-      records[index].setCRC32(r.localRecord.getCompressedDataObject().CRC32);
+
+      CompressedData newCD = r.localRecord.getCompressedDataObject();
+
+      records[index].setCompressedSize(newCD.getLength());
+      records[index].setCompressionMethod(newCD.Method);
+      records[index].setCRC32(newCD.CRC32);
+
       offsetSum += rec[index].localRecord.getLength();
 
       // update start of central directory

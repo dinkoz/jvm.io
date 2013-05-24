@@ -9,7 +9,7 @@ public class LocalFileRecord extends OffsetRecord {
   private static final int OFF_CompressionMethod        =  8;
   private static final int OFF_CRC32                    = 14;
   private static final int OFF_CompressedData_Length    = 18;
-  private static final int OFF_UnCompressedData_Length  = 18;
+  private static final int OFF_UnCompressedData_Length  = 22;
   private static final int OFF_FileName_Length          = 26;
   private static final int OFF_ExtraField_Length        = 28;
   private static final int OFF_FileName                 = 30;
@@ -46,19 +46,19 @@ public class LocalFileRecord extends OffsetRecord {
   // END LENGHTS
 
   private int getCRC32() {
-    return getShort(OFF_CRC32);
+    return getInt(OFF_CRC32);
   }
 
   private void setCRC32(final int CRC32) {
-    setShort(OFF_CRC32, CRC32);
+    setInt(OFF_CRC32, CRC32);
   }
 
   private void setCompressedDataLength(final int length) {
-    setShort(OFF_CompressedData_Length, length);
+    setInt(OFF_CompressedData_Length, length);
   }
 
   public void setUnCompressedDataLength(final int length) {
-    setShort(OFF_UnCompressedData_Length, length);
+    setInt(OFF_UnCompressedData_Length, length);
   }
 
   private int getCompressedMethod() {

@@ -42,11 +42,11 @@ class RunnerTest extends FeatureSpec with GivenWhenThen with MustMatchers {
 
       val out = r.exec(params)
 
-      println("out.code=" + out.code)
-      println("out.output=" + new String(out.output))
+//      println("out.code=" + out.code)
+//      println("out.output=" + new String(out.output))
 
       out.code must be (0)
-      assert(new String(out.output).startsWith(echo))
+      new String(out.output).startsWith(echo) must be (true)
     }
 
   }

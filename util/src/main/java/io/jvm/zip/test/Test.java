@@ -41,7 +41,6 @@ public class Test {
 
       for (int i = 0; i < ze.records.length; i++) {
         CompressedData oldCD = zip.localFileRecords[i].localFileRecord.getCompressedDataObject();
-
         ze.records[i] = new LocalFileRecordWriter(zip.localFileRecords[i], oldCD);
       }
 
